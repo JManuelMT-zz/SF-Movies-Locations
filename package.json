@@ -6,6 +6,11 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot --port 3000",
     "build": "webpack --mode production",
+    "lint:css": "stylelint ./src/**/*.scss",
+    "lint:css:fix": "stylelint ./src/**/*.scss --fix",
+    "lint:js": "eslint .",
+    "lint:js:fix": "eslint . --fix",
+    "lint:staged": "lint-staged"
   },
   "pre-commit": [
     "lint:staged"

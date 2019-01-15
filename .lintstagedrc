@@ -1,6 +1,0 @@
-{
-  "linters": {
-    "**/*.js": "eslint .",
-    "**/*.scss": "stylelint"
-  }
-}
