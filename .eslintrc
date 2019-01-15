@@ -1,6 +1,7 @@
 {
     "env": {
       "browser": true,
+      "commonjs": true,
       "es6": true,
       "node": true,
       "jest": true
@@ -9,41 +10,42 @@
       "airbnb"
     ],
     "parser": "babel-eslint",
+    "parserOptions": {
+      "ecmaFeatures": {
+          "experimentalObjectRestSpread": true
+      },
+      "sourceType": "module"
+    },
     "plugins": [
       "react"
     ],
     "rules": {
-      "jsx-a11y/anchor-is-valid": [ "error", {
-        "components": [ "Link" ],
-        "specialLink": [ "to", "hrefLeft", "hrefRight" ],
-        "aspects": [ "noHref", "invalidHref", "preferButton" ]
-      }],
+      "no-plusplus": 0,
+      "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
       "indent": [
-        "error",
-        4,
-        { "SwitchCase": 1 }
+          "error",
+          4,
+          { "SwitchCase": 1 }
       ],
       "linebreak-style": [
-        "error",
-        "unix"
+          "error",
+          "unix"
       ],
       "react/jsx-indent": [
           "error",
           4
       ],
-      "no-use-before-define": ["error", { "functions": false}],
-      "radix": [1],
-      "react/jsx-filename-extension": [2, { "extensions": [".js"] }],
-      "react/prefer-stateless-function": [0],
-      "react/require-default-props": [2, { "forbidDefaultForRequired": false }],
-      "react/destructuring-assignment": [1, "always"]
-    },
-    "settings": {
-      "import/resolver": {
-        "node": {
-          "paths": [".", "src"]
-        }
-      }
+      "react/jsx-indent-props": [
+          "error",
+          4
+      ],
+      "react/require-default-props": 0,
+      "jsx-a11y/no-static-element-interactions": [0],
+      "jsx-a11y/anchor-has-content": [0],
+      "class-methods-use-this": [0],
+      "no-useless-escape": 0,
+      "no-case-declarations": 0,
+      "no-underscore-dangle": 0
     }
   }
   
