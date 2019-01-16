@@ -6,8 +6,11 @@
 # Install dependencies
 npm install
 
-# Serve on localhost:3000
+# Serve frontend on localhost:3000
 npm start
+
+# Serve backend on localhost:3001
+npm run server
 
 # Build for production
 npm run build

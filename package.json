@@ -5,19 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot --port 3000",
-    "build": "webpack --mode production",
-    "lint:css": "stylelint ./src/**/*.scss",
-    "lint:css:fix": "stylelint ./src/**/*.scss --fix",
-    "lint:js": "eslint .",
-    "lint:js:fix": "eslint . --fix",
-    "lint:staged": "lint-staged"
+    "server": "nodemon ./backend/app.js",
+    "build": "webpack --mode production"
   },
-  "pre-commit": [
-    "lint:staged"
-  ],
   "author": "José Manuel Méndez",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "google-maps-react": "^2.0.2",
     "prop-types": "^15.6.2",
@@ -44,6 +39,7 @@
     "jest": "^23.6.0",
     "lint-staged": "7.2.0",
     "node-sass": "^4.11.0",
+    "nodemon": "^1.18.9",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.20.3",
     "stylelint": "9.4.0",

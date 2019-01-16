@@ -3,6 +3,10 @@ import Header from './Header';
 import Map from './Map';
 
 class App extends Component {
+    componentDidMount() {
+
+    }
+
     render() {
         return (
             <div>

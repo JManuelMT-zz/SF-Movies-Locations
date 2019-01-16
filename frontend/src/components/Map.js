@@ -6,6 +6,7 @@ import {
     Marker,
     InfoWindow,
 } from 'google-maps-react';
+import { googleApiKey } from '../../../constants/keys';
 
 export class MapComponent extends Component {
     constructor() {
@@ -24,12 +25,11 @@ export class MapComponent extends Component {
 
     onMarkerClick(props, marker) {
         this.setState({
-            selectedPlace: props,
+            selectedPlace: 'test',
             activeMarker: marker,
             showingInfoWindow: true,
         });
     }
-
 
     onClose() {
         const { showingInfoWindow } = this.state;
@@ -52,17 +52,15 @@ export class MapComponent extends Component {
         return (
             <Map
                 google={google}
-                zoom={14}
+                zoom={12}
                 className="map"
                 // This are San Francisco's latitude and longitude
-                defaultCenter={{
+                center={{
                     lat: 37.7577,
                     lng: -122.4376,
                 }}
-                defaultZoom={1}
             >
                 <Marker position={{ lat: 37.7760, lng: -122.4200 }} onClick={this.onMarkerClick} />
-                <Marker position={{ lat: 37.7760, lng: -122.4400 }} onClick={this.onMarkerClick} />
                 <InfoWindow
                     marker={activeMarker}
                     visible={showingInfoWindow}
@@ -70,7 +68,7 @@ export class MapComponent extends Component {
                 >
                     <div>
                         <h4>
-                            {selectedPlace.name}
+                            {selectedPlace}
                         </h4>
                     </div>
                 </InfoWindow>
@@ -84,5 +82,5 @@ MapComponent.propTypes = {
 };
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyCgaWjx0Q-xv5R3BljPvtVUgyxo7_IBFFw',
+    apiKey: googleApiKey,
 })(MapComponent);
