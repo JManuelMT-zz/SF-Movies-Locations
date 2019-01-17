@@ -1,20 +1,29 @@
 const axios = require('axios');
 const { dataSFToken, googleApiKey } = require('../../constants/keys');
+const { getLatAndLonTransformer, getSFLocationsTransfomer } = require('../transformers/location-transformer');
 
 class Locations {
-    static getAllLocations() {
-        // get all addresses
-        return axios.get(`https://data.sfgov.org/resource/wwmu-gmzc.json?$$app_token=${dataSFToken}`);
-    }
-
-    static getLocation(address) {
-        // Get an specific location
-        return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${googleApiKey}`);
+    static getLocations(address = '') {
+        // We obtain first 10 elements at the beginning
+        const params = address === '' ? '$limit=10' : `$where=locations like '%25${address}%25'`;
+        return axios.get(
+            `https://data.sfgov.org/resource/wwmu-gmzc.json?$$app_token=${dataSFToken}&${params}`,
+            {
+                transformResponse: data => getSFLocationsTransfomer(JSON.parse(data)),
+            },
+        );
     }
 
     static getLocationsLatAndLon(locations) {
         // get latitude and longitude of addresses
-        const locationPromises = locations.map(location => axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${location.location}&key=${googleApiKey}`));
+        const locationPromises = locations.map(
+            location => axios.get(
+                `https://maps.googleapis.com/maps/api/geocode/json?address=${location.location} San Francisco&key=${googleApiKey}`,
+                {
+                    transformResponse: data => getLatAndLonTransformer(JSON.parse(data), location),
+                },
+            ),
+        );
         return Promise.all(locationPromises);
     }
 }
