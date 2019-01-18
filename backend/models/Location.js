@@ -5,7 +5,7 @@ const { getLatAndLonTransformer, getSFLocationsTransfomer } = require('../transf
 class Locations {
     static getLocations(address = '') {
         // We obtain first 10 elements at the beginning
-        const params = address === '' ? '$limit=10' : `$where=locations like '%25${address}%25'`;
+        const params = address === '' ? '$limit=9' : `$where=locations like '%25${address}%25'`;
         return axios.get(
             `https://data.sfgov.org/resource/wwmu-gmzc.json?$$app_token=${dataSFToken}&${params}`,
             {
@@ -17,10 +17,10 @@ class Locations {
     static getLocationsLatAndLon(locations) {
         // get latitude and longitude of addresses
         const locationPromises = locations.map(
-            location => axios.get(
+            (location, index) => axios.get(
                 `https://maps.googleapis.com/maps/api/geocode/json?address=${location.location} San Francisco&key=${googleApiKey}`,
                 {
-                    transformResponse: data => getLatAndLonTransformer(JSON.parse(data), location),
+                    transformResponse: data => getLatAndLonTransformer(JSON.parse(data), location, index),
                 },
             ),
         );

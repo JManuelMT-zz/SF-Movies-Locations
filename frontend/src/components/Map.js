@@ -10,20 +10,21 @@ import { googleApiKey } from '../../../constants/keys';
 const MapComponent = ({
     google,
     markers,
+    initialCoordinates,
+    initialZoom,
+    selectMarker,
 }) => (
     <Map
         google={google}
-        zoom={12}
+        zoom={initialZoom}
         className="map"
         // This are San Francisco's latitude and longitude
-        center={{
-            lat: 37.7577,
-            lng: -122.4376,
-        }}
+        center={initialCoordinates}
     >
         { markers.map(marker => (
             <Marker
-                key={`marker_${marker.lat}`}
+                key={`marker_${marker.id}`}
+                onClick={() => selectMarker(marker)}
                 position={{
                     lat: marker.lat,
                     lng: marker.lng,
@@ -36,6 +37,9 @@ const MapComponent = ({
 MapComponent.propTypes = {
     google: PropTypes.shape({}),
     markers: PropTypes.arrayOf(Object),
+    initialCoordinates: PropTypes.shape({}),
+    initialZoom: PropTypes.number,
+    selectMarker: PropTypes.func,
 };
 
 export default GoogleApiWrapper({
