@@ -3,6 +3,7 @@ import axios from 'axios';
 import Header from './Header';
 import Map from './Map';
 import Modal from './Modal';
+import { PROD } from '../../../constants/endpoints';
 
 class App extends Component {
     constructor() {
@@ -79,7 +80,7 @@ class App extends Component {
     }
 
     searchLocations(address = '') {
-        axios.get(`http://localhost:3001/locations/${address}`)
+        axios.get(`${PROD}/locations/${address}`)
             .then((response) => {
                 const { locations } = response.data;
                 if (address === '') {
