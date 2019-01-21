@@ -21,11 +21,11 @@ const getLatitudeAndLongitude = (req, res, next) => {
         .catch(error => res.status(500).send(error));
 };
 
-const sendLocations = (req, res) => {
-    return res.send({
+const sendLocations = (req, res) => (
+    res.send({
         locations: res.locals.locationsLatAndLog,
-    });
-};
+    })
+);
 
 
 module.exports = [getLocations, getLatitudeAndLongitude, sendLocations];
