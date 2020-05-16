@@ -1,4 +1,4 @@
 module.exports = {
-    googleApiKey: 'AIzaSyCgaWjx0Q-xv5R3BljPvtVUgyxo7_IBFFw',
-    dataSFToken: 'BZ5cfwDqRzB51ZyBazFfcPA3B',
+    googleApiKey: process.env.GOOGLE_MAPS_API_KEY,
+    dataSFToken: process.env.SF_TOKEN,
 };
